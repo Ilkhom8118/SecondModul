@@ -14,5 +14,8 @@ public class Student
 
     public string Gender { get; set; }
 
-    public List<int> Results { get; set; }
+    public List<int> Results { get; set; } = new List<int>();
+
+    public string Password { get; set; }
+    public string UserName { get; set; }
 }

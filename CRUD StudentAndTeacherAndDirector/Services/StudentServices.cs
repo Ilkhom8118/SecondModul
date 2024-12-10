@@ -6,8 +6,7 @@ namespace CRUD_StudentAndTeacherAndDirector.Services;
 public class StudentServices
 {
     private string studentFilePath;
-    public string password1 = "student1";
-    public string usingLoginStudent1 = "student1";
+
 
 
     public StudentServices()
@@ -19,7 +18,7 @@ public class StudentServices
         }
     }
 
-    private void SaveStudentServices(List<Student> student)
+    public void SaveStudentServices(List<Student> student)
     {
         var jsonFile = JsonSerializer.Serialize(student);
         File.WriteAllText(studentFilePath, jsonFile);
@@ -58,7 +57,14 @@ public class StudentServices
         {
             return false;
         }
-        list.Remove(res);
+        foreach (var obj in list)
+        {
+            if (obj.Id == id)
+            {
+                list.Remove(obj);
+                break;
+            }
+        }
         SaveStudentServices(list);
         return true;
     }
@@ -83,5 +89,17 @@ public class StudentServices
     public List<Student> GetAll()
     {
         return GetAllStudent();
+    }
+    public Student GetStudentByUser(string userName, string password)
+    {
+        var list = GetAllStudent();
+        foreach (var studnet in list)
+        {
+            if (studnet.UserName == userName && studnet.Password == password)
+            {
+                return studnet;
+            }
+        }
+        return null;
     }
 }

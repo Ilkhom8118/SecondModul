@@ -1,0 +1,25 @@
+[
+    {
+        "Id": "45cebe43-e426-4139-9fb3-c28c1b117001",
+        "FirstName": "Ilkhom",
+        "LastName": "Tilovov",
+        "Age": 27,
+        "Degree": "10",
+        "Gender": "Erkak",
+        "Results": [],
+        "Password": "ilkhom",
+        "UserName": "ilkhom"
+    },
+    {
+        "Id": "9f3f81f4-494d-46af-8d0e-6f546666ce9a",
+        "FirstName": "O\u0027lmasbek",
+        "LastName": "Atahonov",
+        "Age": 20,
+        "Degree": "IT",
+        "Gender": "Erkak",
+        "Results": [],
+        "Password": "student",
+        "UserName": "student"
+    }
+
+]

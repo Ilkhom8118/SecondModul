@@ -211,7 +211,14 @@ public class TeachersServices
         {
             return false;
         }
-        list.Remove(res);
+        foreach (var listRes in list)
+        {
+            if (listRes.Id == id)
+            {
+                list.Remove(listRes);
+                break;
+            }
+        }
         SaveInformation(list);
         return true;
     }

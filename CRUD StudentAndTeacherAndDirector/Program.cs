@@ -1,4 +1,5 @@
 ﻿using CRUD_StudentAndTeacherAndDirector.Models;
+using CRUD_StudentAndTeacherAndDirector.Services;
 using CRUD_StudentAndTeacherAndDirector.Servicesl;
 
 namespace CRUD_StudentAndTeacherAndDirector
@@ -9,7 +10,6 @@ namespace CRUD_StudentAndTeacherAndDirector
         {
             FirstMenu();
         }
-
         public static void FirstMenu()
         {
             Console.WriteLine("1. Director");
@@ -17,7 +17,6 @@ namespace CRUD_StudentAndTeacherAndDirector
             Console.WriteLine("3. Student");
             Console.Write("Choose: ");
             var option = Console.ReadLine();
-
             if (option == "1")
             {
                 DirectorMenu();
@@ -30,9 +29,7 @@ namespace CRUD_StudentAndTeacherAndDirector
             {
                 StudentMenu();
             }
-
         }
-
         public static void DirectorMenu()
         {
             var teacherService = new TeachersServices();
@@ -146,13 +143,223 @@ namespace CRUD_StudentAndTeacherAndDirector
         }
         public static void TeacherMenu()
         {
-
+            var service = new StudentServices();
+            var students = new Student();
+            var test = new Test();
+            var testService = new TestServices();
+            var teacherService = new TeachersServices();
+            // ===================================================================================
+            Console.Write("Enter Teacher User name: ");
+            var teacherUserName = Console.ReadLine();
+            Console.Write("Enter Teacher password: ");
+            var teacherPassword = Console.ReadLine();
+            if (teacherUserName == teacherService.usingLogin && teacherPassword == teacherService.passwordTeacher)
+            {
+                while (true)
+                {
+                    Console.WriteLine("1. Add Student");
+                    Console.WriteLine("2. Delete Student");
+                    Console.WriteLine("3. Update Student");
+                    Console.WriteLine("4. Get All");
+                    Console.WriteLine("5. Get By Id");
+                    Console.WriteLine("6. Add Test");
+                    Console.WriteLine("7. Delete Test");
+                    Console.WriteLine("8. Update Test");
+                    Console.WriteLine("9. Get Test By Id");
+                    Console.WriteLine("10. Get All By Tests");
+                    Console.Write("Enter choose: ");
+                    var choose = Console.ReadLine();
+                    switch (choose)
+                    {
+                        case "1":
+                            Console.Write("First Name:");
+                            students.FirstName = Console.ReadLine();
+                            Console.Write("Last Name:");
+                            students.LastName = Console.ReadLine();
+                            Console.Write("Age:");
+                            students.Age = int.Parse(Console.ReadLine());
+                            Console.Write("Degree:");
+                            students.Degree = Console.ReadLine();
+                            Console.Write("Gender:");
+                            students.Gender = Console.ReadLine();
+                            service.AddStudent(students);
+                            break;
+                        case "2":
+                            Console.Write("Enter deleted student's id: ");
+                            var studentId = Guid.Parse(Console.ReadLine());
+                            if (service.DeleteStudent(studentId))
+                            {
+                                Console.WriteLine("Deleted !!!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Not Deleted !!!");
+                            }
+                            break;
+                        case "3":
+                            Console.Write("Enter student's update id: ");
+                            students.Id = Guid.Parse(Console.ReadLine());
+                            Console.Write("First Name:");
+                            students.FirstName = Console.ReadLine();
+                            Console.Write("Last Name:");
+                            students.LastName = Console.ReadLine();
+                            Console.Write("Age:");
+                            students.Age = int.Parse(Console.ReadLine());
+                            Console.Write("Degree:");
+                            students.Degree = Console.ReadLine();
+                            Console.Write("Gender:");
+                            students.Gender = Console.ReadLine();
+                            var res = service.UpdateStudent(students);
+                            if (res is true)
+                            {
+                                Console.WriteLine("Updated !!!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Not Updated !!!");
+                            }
+                            break;
+                        case "4":
+                            var sdnts = service.GetAll();
+                            foreach (var student in sdnts)
+                            {
+                                Console.WriteLine($"Id : {student.Id}");
+                                Console.WriteLine($"First Name : {student.FirstName}");
+                                Console.WriteLine($"Last Name : {student.LastName}");
+                                Console.WriteLine($"Age : {student.Age}");
+                                Console.WriteLine($"Degree : {student.Degree}");
+                                Console.WriteLine($"Gender : {student.Gender}");
+                                foreach (var infoBall in student.Results)
+                                {
+                                    Console.WriteLine($"{infoBall} | ");
+                                }
+                            }
+                            break;
+                        case "5":
+                            Console.Write("Enter student's update id: ");
+                            var id = Guid.Parse(Console.ReadLine());
+                            var studentRes = service.GetById(id);
+                            Console.WriteLine($"Id : {studentRes.Id}");
+                            Console.WriteLine($"First Name : {studentRes.FirstName}");
+                            Console.WriteLine($"Last Name : {studentRes.LastName}");
+                            Console.WriteLine($"Age : {studentRes.Age}");
+                            Console.WriteLine($"Degree : {studentRes.Degree}");
+                            Console.WriteLine($"Gender : {studentRes.Gender}");
+                            foreach (var infoBall in studentRes.Results)
+                            {
+                                Console.WriteLine($"{infoBall} | ");
+                            }
+                            break;
+                        case "6":
+                            Console.Write("Add questions: ");
+                            test.QuestionText = Console.ReadLine();
+                            Console.Write("A: ");
+                            test.AVariant = Console.ReadLine();
+                            Console.Write("B: ");
+                            test.BVariant = Console.ReadLine();
+                            Console.Write("C: ");
+                            test.CVariant = Console.ReadLine();
+                            Console.Write("Tell me the answer: ");
+                            test.Answer = Console.ReadLine();
+                            testService.AddTest(test);
+                            break;
+                        case "7":
+                            Console.Write("Enter Test's Deleted id: ");
+                            var testId = Guid.Parse(Console.ReadLine());
+                            if (testService.DeleteTest(testId) is true)
+                            {
+                                Console.WriteLine("Test Deleted !!!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Not Test Deleted !!!");
+                            }
+                            break;
+                        case "8":
+                            Console.Write("Enter Test's Update questions: ");
+                            test.QuestionText = Console.ReadLine();
+                            Console.Write("A: ");
+                            test.AVariant = Console.ReadLine();
+                            Console.Write("B: ");
+                            test.BVariant = Console.ReadLine();
+                            Console.Write("C: ");
+                            test.CVariant = Console.ReadLine();
+                            Console.Write("Tell me the answer: ");
+                            test.Answer = Console.ReadLine();
+                            var testRes = testService.UpdateTest(test);
+                            if (testRes is true)
+                            {
+                                Console.WriteLine("Updated !!!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Not Updated !!!");
+                            }
+                            break;
+                        case "9":
+                            var testguId = Guid.Parse(Console.ReadLine());
+                            var testGuId = testService.GetById(testguId);
+                            Console.WriteLine($"{testGuId} ");
+                            break;
+                        case "10":
+                            var testAll = testService.GetAll();
+                            for (var i = 0; i < testAll.Count; i++)
+                            {
+                                Console.WriteLine($"{i + 1}. {testAll[i]}");
+                            }
+                            break;
+                    }
+                }
+            }
         }
         public static void StudentMenu()
         {
-
+            var testServices = new TestServices();
+            var studentServices = new StudentServices();
+            var studentObj = new Student();
+            Console.Write("Enter User Name: ");
+            var stduentUser = Console.ReadLine();
+            Console.Write("Enter User Password: ");
+            var studentPass = Console.ReadLine();
+            var student = studentServices.GetStudentByUser(stduentUser, studentPass);
+            if (student is not null)
+            {
+                while (true)
+                {
+                    Console.WriteLine("1. Run Tests");
+                    Console.WriteLine("2. How many tests worked");
+                    Console.Write("Choose: ");
+                    var option = Console.ReadLine();
+                    var listTest = testServices.GetAll();
+                    switch (option)
+                    {
+                        case "1":
+                            var count = 0;
+                            for (var i = 0; i < listTest.Count; i++)
+                            {
+                                Console.WriteLine($"{i + 1}. {listTest[i].QuestionText}");
+                                Console.WriteLine($"A: {listTest[i].AVariant}");
+                                Console.WriteLine($"B {listTest[i].BVariant}");
+                                Console.WriteLine($"C: {listTest[i].CVariant}");
+                                Console.Write("Enter Variant: ");
+                                var variant = Console.ReadLine();
+                                if (variant == listTest[i].Answer)
+                                {
+                                    count++;
+                                }
+                            }
+                            student.Results.Add(count);
+                            studentServices.SaveStudentServices(studentServices.GetAll());
+                            break;
+                        case "2":
+                            for (var i = 0; i < student.Results.Count; i++)
+                            {
+                                Console.WriteLine($"{i + 1}. {student.Results[i]}");
+                            }
+                            break;
+                    }
+                }
+            }
         }
-
-
     }
 }
