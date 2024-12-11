@@ -9,4 +9,5 @@ public interface IStudentServices
     public bool DeletedStudent(Guid id);
     public bool UpdatedStudent(Student obj);
     public List<Student> GetAll();
+    public Student GetStudentByUser(string userName, string password);
 }

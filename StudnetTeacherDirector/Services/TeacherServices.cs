@@ -9,7 +9,7 @@ public class TeacherServices : ITeacherServices
     public TeacherServices()
     {
         TeacherFilePAth = "../../../Data/Teacher.json";
-        if (File.Exists(TeacherFilePAth) is false)
+        if (!File.Exists(TeacherFilePAth) || string.IsNullOrWhiteSpace(File.ReadAllText(TeacherFilePAth)))
         {
             File.WriteAllText(TeacherFilePAth, "[]");
         }
@@ -23,8 +23,12 @@ public class TeacherServices : ITeacherServices
     private List<Teacher> GetAllTeachers()
     {
         var teacherJson = File.ReadAllText(TeacherFilePAth);
-        var teacherFile = JsonSerializer.Deserialize<List<Teacher>>(teacherJson);
-        return teacherFile;
+        if (string.IsNullOrWhiteSpace(teacherJson))
+        {
+            return new List<Teacher>();
+        }
+
+        return JsonSerializer.Deserialize<List<Teacher>>(teacherJson) ?? new List<Teacher>();
     }
 
     public Teacher AddTeacher(Teacher added)
@@ -87,5 +91,30 @@ public class TeacherServices : ITeacherServices
     public List<Teacher> GetAll()
     {
         return GetAllTeachers();
+    }
+    public Teacher GetTeacherByUser(string userName, string password)
+    {
+        var list = GetAllTeachers();
+        foreach (var teacher in list)
+        {
+            if (teacher.UserName == userName && teacher.Password == password)
+            {
+                return teacher;
+            }
+        }
+        return null;
+    }
+
+    public Teacher GetTeacherByNumber(string numbers)
+    {
+        var list = GetAllTeachers();
+        foreach (var number in list)
+        {
+            if (number.Phone == numbers)
+            {
+                return number;
+            }
+        }
+        return null;
     }
 }

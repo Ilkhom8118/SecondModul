@@ -9,4 +9,7 @@ public interface ITeacherServices
     public bool DeletedTeacher(Guid id);
     public bool UpdatedTeacher(Teacher obj);
     public List<Teacher> GetAll();
+    public Teacher GetTeacherByUser(string userName, string password);
+    public Teacher GetTeacherByNumber(string numbers);
+    
 }

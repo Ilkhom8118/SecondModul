@@ -14,7 +14,7 @@ public class StudentServices : IStudentServices
             File.WriteAllText(StudentFilePath, "[]");
         }
     }
-    public void SaveInformation(List<Student> student)
+    private void SaveInformation(List<Student> student)
     {
         var studnetJson = JsonSerializer.Serialize(student);
         File.WriteAllText(StudentFilePath, studnetJson);
@@ -86,5 +86,17 @@ public class StudentServices : IStudentServices
     public List<Student> GetAll()
     {
         return GetAllStudent();
+    }
+    public Student GetStudentByUser(string userName, string password)
+    {
+        var list = GetAllStudent();
+        foreach (var student in list)
+        {
+            if (student.UserName == userName && student.Password == password)
+            {
+                return student;
+            }
+        }
+        return null;
     }
 }
