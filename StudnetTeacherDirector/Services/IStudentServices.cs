@@ -10,4 +10,8 @@ public interface IStudentServices
     public bool UpdatedStudent(Student obj);
     public List<Student> GetAll();
     public Student GetStudentByUser(string userName, string password);
+    public Student GetStudentByPhone(string phone);
+    
+
+
 }

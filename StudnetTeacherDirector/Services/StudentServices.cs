@@ -46,6 +46,7 @@ public class StudentServices : IStudentServices
         }
         return null;
     }
+
     public bool DeletedStudent(Guid id)
     {
         var list = GetAllStudent();
@@ -99,4 +100,19 @@ public class StudentServices : IStudentServices
         }
         return null;
     }
+
+    public Student GetStudentByPhone(string phone)
+    {
+        var list = GetAllStudent();
+        foreach (var student in list)
+        {
+            if (student.Phone == phone)
+            {
+                return student;
+            }
+        }
+        return null;
+    }
+
+   
 }

@@ -1,1 +1,29 @@
-[{"Id":"783f1f0a-ef4e-42af-a03b-60ecc1c71fc4","FirstName":"Ilkhom","LastName":"Tilovov","Age":27,"Subject":"IT","Likes":0,"DisLikes":0,"Gender":"Erkak","UserName":"asd","Password":"aasd","Phone":"971434541"},{"Id":"3ffc94af-c9b5-4bc6-8ac3-c7e245634ca4","FirstName":"Ziyod","LastName":"Tilovov","Age":27,"Subject":"IT","Likes":0,"DisLikes":0,"Gender":"Erkak","UserName":"teacher","Password":"teacher","Phone":"971434541"}]
+[
+    {
+        "Id": "783f1f0a-ef4e-42af-a03b-60ecc1c71fc4",
+        "FirstName": "Ziyod",
+        "LastName": "Xaytboy",
+        "Age": 27,
+        "Subject": "IT",
+        "Likes": 1,
+        "DisLikes": 0,
+        "Gender": "Erkak",
+        "UserName": "Ziyod",
+        "Password": "Ziyod",
+        "Phone": null
+    },
+    {
+        "Id": "3ffc94af-c9b5-4bc6-8ac3-c7e245634ca4",
+        "FirstName": "Ziyod",
+        "LastName": "Tilovov",
+        "Age": 27,
+        "Subject": "IT",
+        "Likes": 0,
+        "DisLikes": 0,
+        "Gender": "Erkak",
+        "UserName": "teacher",
+        "Password": "teacher",
+        "Phone": "971434541"
+    }
+
+]

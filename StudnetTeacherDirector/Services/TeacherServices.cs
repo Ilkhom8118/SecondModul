@@ -15,7 +15,7 @@ public class TeacherServices : ITeacherServices
         }
     }
 
-    public void SaveInformation(List<Teacher> teacher)
+    private void SaveInformation(List<Teacher> teacher)
     {
         var teacherJson = JsonSerializer.Serialize(teacher);
         File.WriteAllText(TeacherFilePAth, teacherJson);
@@ -83,6 +83,7 @@ public class TeacherServices : ITeacherServices
             if (list[i].Id == obj.Id)
             {
                 list[i] = obj;
+                break;
             }
         }
         SaveInformation(list);

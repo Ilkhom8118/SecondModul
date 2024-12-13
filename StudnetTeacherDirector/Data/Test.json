@@ -1,0 +1,19 @@
+[
+    {
+        "Id": "116489b3-5033-4c52-aa13-6221a15cf194",
+        "QuestionText": "5*5=",
+        "AVariant": "24",
+        "BVariant": "26",
+        "CVariant": "25",
+        "Answer": "C"
+    },
+    {
+        "Id": "ab60edbc-3bcb-4f14-b513-50b17f1ba4cd",
+        "QuestionText": "6*6=",
+        "AVariant": "23",
+        "BVariant": "24",
+        "CVariant": "36",
+        "Answer": "C"
+    }
+
+]
