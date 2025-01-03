@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="DataAccess\Enums\" />
-    <Folder Include="DataAccess\Data\" />
-  </ItemGroup>
-
 </Project>

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using StudentCrud.Services.DTOs;
 
-namespace StudentCrud.Services
+namespace StudentCrud.Services;
+
+public class StudentCreateDto : StudentDataBase
 {
-    internal class StudentCreateDto
-    {
-    }
+    public string Password { get; set; }
 }

@@ -2,7 +2,7 @@
 
 namespace StudentCrud.Repoistory;
 
-public interface IStudentService
+public interface IStudentRepo
 {
     Student AddStudent(Student added);
     Student GetByStudentId(Guid id);

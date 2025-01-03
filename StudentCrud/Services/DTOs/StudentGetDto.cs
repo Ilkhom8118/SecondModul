@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace StudentCrud.Services.DTOs;
 
-namespace StudentCrud.Services.DTOs
+public class StudentGetDto:StudentDataBase
 {
-    internal class StudentGetDto
-    {
-    }
+    public Guid Id { get; set; }
 }

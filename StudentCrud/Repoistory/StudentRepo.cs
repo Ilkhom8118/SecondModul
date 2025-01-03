@@ -3,11 +3,11 @@ using System.Text.Json;
 
 namespace StudentCrud.Repoistory;
 
-public class StudentService : IStudentService
+public class StudentRepo : IStudentRepo
 {
     private string Path;
     private List<Student> students;
-    public StudentService()
+    public StudentRepo()
     {
         Path = "../../../DataAccess/Data/Student.json";
         if (!File.Exists(Path))
