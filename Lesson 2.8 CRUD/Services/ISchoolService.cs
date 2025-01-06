@@ -9,4 +9,5 @@ public interface ISchoolService
     void UpdateSchool(SchoolDto obj);
     List<SchoolDto> GetAllSchool();
     SchoolDto GetById(Guid id);
+    SchoolDto AddSchoolAdd(SchoolCrateDto added);
 }

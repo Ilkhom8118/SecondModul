@@ -6,6 +6,7 @@ namespace StudnetTeacherDirector.Services;
 public class StudentServices : IStudentServices
 {
     private string StudentFilePath;
+    private List<Student> students;
     public StudentServices()
     {
         StudentFilePath = "../../../Data/Student.json";
@@ -13,6 +14,7 @@ public class StudentServices : IStudentServices
         {
             File.WriteAllText(StudentFilePath, "[]");
         }
+        students = new List<Student>();
     }
     private void SaveInformation(List<Student> student)
     {
@@ -63,7 +65,7 @@ public class StudentServices : IStudentServices
                 break;
             }
         }
-        SaveInformation(list);
+        SaveInformation();
         return true;
     }
     public bool UpdatedStudent(Student obj)
@@ -81,7 +83,7 @@ public class StudentServices : IStudentServices
                 list[i] = obj;
             }
         }
-        SaveInformation(list);
+        SaveInformation();
         return true;
     }
     public List<Student> GetAll()
@@ -114,5 +116,5 @@ public class StudentServices : IStudentServices
         return null;
     }
 
-   
+
 }

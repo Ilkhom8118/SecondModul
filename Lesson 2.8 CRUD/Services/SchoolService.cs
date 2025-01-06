@@ -52,7 +52,6 @@ public class SchoolService : ISchoolService
             Address = obj.Address,
             TotalStudent = obj.TotalStudent,
             TotalTeacher = obj.TotalTeacher,
-
         };
     }
 
@@ -87,14 +86,21 @@ public class SchoolService : ISchoolService
 
     public bool AddSchool(SchoolDto added)
     {
-        var res = ValidationSchoolAddDto(added);
-        if (res)
+        throw new NotImplementedException();
+    }
+
+    public SchoolDto AddSchoolAdd(SchoolCrateDto added)
+    {
+        var schoolDto = ConvertToSchool(added);
+        schoolDto.Id = Guid.NewGuid();
+        var schoolRepo = SchoolRepoistory.AddSchool(schoolDto);
+        var sDto = ConvertToSchool(schoolRepo);
+        SchoolRepoistory.AddSchool(schoolDto);
+        var valid = ValidationSchoolAddDto(sDto);
+        if (!valid)
         {
-            var schoolDto = ConvertToSchool(added);
-            schoolDto.Id = Guid.NewGuid();
-            SchoolRepoistory.AddSchool(schoolDto);
-            return true;
+            return null;
         }
-        return false;
+        return sDto;
     }
 }

@@ -10,12 +10,11 @@ public class SchoolRepoistory : ISchoolRepoistory
     public SchoolRepoistory()
     {
         Path = "../../../DataAccess/Data/School.json";
+        Schools = new List<School>();
         if (!File.Exists(Path))
         {
             File.WriteAllText(Path, "[]");
         }
-        Schools = new List<School>();
-        Schools = GetAllSchools();
     }
 
     private void SaveInformation()
@@ -31,6 +30,7 @@ public class SchoolRepoistory : ISchoolRepoistory
     }
     public School AddSchool(School added)
     {
+        added.Id = Guid.NewGuid();
         Schools.Add(added);
         SaveInformation();
         return added;

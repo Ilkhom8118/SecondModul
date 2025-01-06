@@ -1,17 +1,28 @@
-﻿namespace Lesson_2._8_CRUD
+﻿using Lesson_2._8_CRUD.Services;
+using Lesson_2._8_CRUD.Services.DTOs;
+
+namespace Lesson_2._8_CRUD
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    Console.WriteLine($" i: {i} | j: {j}");
-                }
+            ISchoolService sevice = new SchoolService();
 
-            }
+            var create = new SchoolDto()
+            {
+                Name = "salom",
+                Address = "qale",
+                TotalStudent = 4,
+                TotalTeacher = 5,
+            };
+
+            sevice.AddSchoolAdd(create);
+            sevice.DeleteSchool(create.Id);
         }
     }
 }
+//public string Name { get; set; }
+//public string Address { get; set; }
+//public int TotalStudent { get; set; }
+//public int TotalTeacher { get; set; }
